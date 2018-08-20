@@ -1,7 +1,7 @@
 <?php
 
-    $dateRequest = $_POST['date']/1000;
     date_default_timezone_set('America/Bogota');
+    $dateRequest = $_POST['date']/1000;
     $transactionDate = date('c',$dateRequest);
 
     function createPlace2Pay(){

@@ -7,8 +7,8 @@
 
     createPlace2Pay();
 
-    $dateRequest = $_POST['date']/1000;
     date_default_timezone_set('America/Bogota');
+    $dateRequest = $_POST['date']/1000;
     $transactionDate = date('c',$dateRequest);
 
     $wsdl = "https://test.placetopay.com/soap/pse/?wsdl";
@@ -17,9 +17,9 @@
     $key = sha1($seed.'024h1IlD', false);
 
     $soap_options = array(
-    'trace'       => 1,     // traces let us look at the actual SOAP messages later
+    'trace'       => 1,   
     'exceptions'  => 1 
-);
+    );
 
     $element = new stdClass;
     $element->auth = new stdClass;
@@ -76,8 +76,6 @@
             echo(json_encode([$result->createTransactionResult]));
         }
     }catch (SOAPFault $f) {
-        // getBankList no retorna lo esperado
-        // $res = ["banklist"=>"No se pudo obtener la lista de Entidades Financieras, por favor intente más tarde","msg"=>"ERROR"];
         print_r($f);
     }
 

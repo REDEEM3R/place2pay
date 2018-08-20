@@ -11,7 +11,6 @@
     $ip = $_SERVER["REMOTE_ADDR"];
     date_default_timezone_set('America/Bogota');
 
-    
 
     if($transactionID != ''){
             $wsdl = "https://test.placetopay.com/soap/pse/?wsdl";
@@ -78,8 +77,20 @@
                             }catch (SOAPFault $f) {
                                 print_r($f);
                             }
-                        }else if($data[0]["status"] == 1){
-                            $response = ["data"=>$data,"msg"=>"OK"];
+                        }else{
+                            switch ($data[0]["status"]) {
+                                case 0:
+                                    $response = ["data"=>$data[0], "msg"=>"FAILED"];
+                                    break;
+                                case 1:
+                                    $response = ["data"=>$data[0], "msg"=>"OK"];
+                                    break;
+                                case 2:
+                                    $response = ["data"=>$data[0], "msg"=>"NOT_AUTHORIZED"];
+                                    break;
+                                default:
+                                    break;
+                            }
                         }
                     }
                 }else if( $data[0]["timeelapsed"] < 7) {
@@ -116,7 +127,8 @@
                     $response = ["data"=>$data, "msg"=>"WAITING"];
                 }
             }else{
-                $response = ["data"=>$data, "msg"=>"NOENTRY"];
+                $response["data"] = $data;
+                $response["msg"] = "NOENTRY";
             }
     }else{
 
@@ -187,8 +199,20 @@
                         }catch (SOAPFault $f) {
                             print_r($f);
                         }
-                    }else if($data[0]["status"] == 1){
-                        $response = ["data"=>$data,"msg"=>"OK"];
+                    }else{
+                        switch ($data[0]["status"]) {
+                            case 0:
+                                $response = ["data"=>$data[0], "msg"=>"FAILED"];
+                                break;
+                            case 1:
+                                $response = ["data"=>$data[0], "msg"=>"OK"];
+                                break;
+                            case 2:
+                                $response = ["data"=>$data[0], "msg"=>"NOT_AUTHORIZED"];
+                                break;
+                            default:
+                                break;
+                        }
                     }
                 }
             }else if( $data[0]["timeelapsed"] < 7) {

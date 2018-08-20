@@ -184,7 +184,7 @@ var getTransaction = function (tid = ''){
                         html += "<p>Su transacción con id: "+res.data.transactionID+" ha sido aprobada por el banco</p>";
                         break;
 					case "NOT_AUTHORIZED":
-						console.log("Transacción fallida");
+						html += "<p>Su transacción con id: "+res.data.transactionID+" ha sido rechazada por el banco</p>";
                         break;
 					case "PENDING":
 						transactionPend = res.data.transactionID;
@@ -195,7 +195,7 @@ var getTransaction = function (tid = ''){
                           }, 5000);
                         break;
                     case "FAILED":
-                        html += "<p>Su transacción con id: "+res.data.transactionID+" ha sido rechazada por el banco</p>";
+						console.log("Transacción fallida");
 						break;
 					case "WAITING":
 						transactionPend = res.data.transactionID;

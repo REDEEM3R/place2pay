@@ -44,7 +44,7 @@ var getTransaction = function (tid = ''){
                           }, 5000);
                         break;
                     case "NOT_AUTHORIZED":
-                        html += "<p>Su transacción con id: "+res.data.transactionID+" ha fallado. Será redireccionado al menú de pago</p>";
+                        html += "<p>Su transacción con id: "+res.data.transactionID+" ha sido rechazada por el banco. Será redireccionado al menú de pago</p>";
                         setTimeout(function(){
                             window.location.replace("../../index.html");
                         }, 5000);
@@ -56,10 +56,10 @@ var getTransaction = function (tid = ''){
                           }, 720000);
                         break;
                     case "FAILED":
-                        html += "<p>Su transacción con id: "+res.data.transactionID+" ha sido rechazada por el banco. Será redireccionado al menú de pago</p>";
-                        setTimeout(function(){
-                            window.location.replace("../../index.html");
-                          }, 5000);
+                        html += "<p>Su transacción con id: "+res.data.transactionID+" ha fallado. Será redireccionado al menú de pago</p>";
+                            setTimeout(function(){
+                                window.location.replace("../../index.html");
+                            }, 5000);
                         break;
                     case "WAITING":
                         html += "<p>Su transacción con id: "+res.data.transactionID+" está siendo procesada";
