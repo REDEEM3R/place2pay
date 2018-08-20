@@ -1,0 +1,88 @@
+.main-project {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.pay-option>label{
+    cursor: pointer;
+}
+
+.pay-option{
+    margin-left:46%;
+    margin-top:25px;
+    height:90px;
+    width:70px;
+    text-align:center;
+    background: transparent;
+    position:relative;
+    cursor: pointer;
+    border-radius: 15px;
+    box-shadow: #bebebe 1px 1px 10px;  
+    padding-top:10px;  
+}
+.pay-option:hover> label,
+.pay-option:hover {
+    transform: scale(1.05) ;
+    color: black!important;
+    transition: ease-in-out 100ms;
+}
+.content {
+    position: relative;
+    height: auto;
+    width: 100%;
+    float: left;
+    clear: both;
+}
+.p2p-select {
+    font-size: 15px;
+    position: absolute;
+    top: 30px;
+    left: 10%;
+}
+.transaction-item{
+    width:50%;
+    height:30px;
+    vertical-align: middle;
+}
+.transaction-item > label{
+    margin-left:7%;
+    width:50%;
+    display : inline-block;
+}
+.transaction-item > label,
+.transaction-item > input,
+.transaction-item > select
+{
+    max-width: 45%;
+    display : inline-block;
+}
+.left{
+    float: left;
+    /* clear: both; */
+}
+.right{
+    float: right;
+    /* clear: both; */
+}
+
+.receipt-detail{
+    height: 25px;
+}
+#receipt-container{
+    clear: both;
+    width:35%;
+    height:auto;
+    background:rgb(231, 231, 231)!important;
+    margin-left:20px;
+    margin-top:40px;
+    padding:20px;
+    border-radius:5px;
+}
+
+.button{
+    background: white;
+    border-radius: 5px;
+    border: 1px solid #ebebeb;
+    width: 100px;
+    height: 20px;
+    text-align: center;
+}

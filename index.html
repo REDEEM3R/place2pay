@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="src/css/main.css"/>
+    <script src="scripts/js/jquery-3.2.1.min.js"></script>
+    <script async src="scripts/js/main.js"></script>
+</head>
+<body class="main-project">
+    <header>
+        <div style="height:40px;margin-top:20px;">Bienvenido al proceso de pago.</div>
+    </header>
+    <section style="width: 800px;height: auto;">
+        <div style="border:2px solid grey;border-radius: 10px;" class="content" id="datos-compra">
+            <div style="height:400px;width:100%;">
+                <div id="transaction-data" style="margin-top:20px;">
+                    <div class="transaction-item left">
+                        <label for="payername">Tipo de documento : </label>
+                        <select id="document-type">
+                            <option disabled selected>Seleccione un tipo de documento</option>
+                            <option value="CC">Cédula de ciudadanía Colombiana</option>
+                            <option value="CE">Cédula de Extranjería</option>
+                            <option value="CC">Tarjeta de identidad</option>
+                            <option value="PPN">Pasaporte</option>
+                            <option value="NIT">Cédula de Ciudadanía</option>
+                            <option value="SSN">Social Security Number</option>
+                        </select>
+                    </div>
+                    <div class="transaction-item right">
+                        <label for="payerdocument">Número de documento : </label>
+                        <input id="payerdocument" type="number" name="payerdocument">
+                    </div>
+                    <div class="transaction-item left">
+                        <label for="payername">Nombres : </label>
+                        <input id="payername" type="text" name="payername">
+                    </div>
+                    <div class="transaction-item right">
+                        <label for="payername">Apellidos : </label>
+                        <input id="payerlastname" type="text" name="payerlastname">
+                    </div>
+                    <div class="transaction-item left">
+                        <label for="payeremail">Correo electrónico : </label>
+                        <input id="payeremail" type="email" name="payeremail">
+                    </div>
+                    <div class="transaction-item left">
+                        <label for="payeremail">Teléfono : </label>
+                        <input id="payerphone" type="number" name="payerphone">
+                    </div>
+
+                    <div id="receipt-container" class="transaction-item left" >
+                        <div class="receipt-detail" style="margin-bottom:20px;">
+                            <b style="font-size: 20px;">Datos del recibo: </b>
+                        </div>
+                        <div class="receipt-detail">Compra : 100.000</div>
+                        <div class="receipt-detail">IVA : 19.000</div>
+                        <div class="receipt-detail">Devolución : 2.000</div>
+                        <div class="receipt-detail"> ------------- </div>
+                        <div class="receipt-detail" style="background:white;"><span style="font-style: italic;">Monto Total </span>: 117.000</div>
+                    </div>
+                </div>
+            </div>
+            <div style="position: absolute; bottom:0px;margin-left: 7%">
+                <p>*Los datos del comprador serán usados como los datos de pagador y de despacho</p>
+            </div>
+        </div>
+        <div style="min-height: 150px;" class="content" id="pay-mthds">
+            <div style="width:100%;"></div>
+            <div id="payopt-pse" class="pay-option">
+                <img style="height: auto;width:60px;" src="src/img/logos/logo-pse.png" id="logo-pse">
+                <label style="color:grey; width:100%;position:absolute;bottom:0%;left:0%;font-size: 18px;">PSE</label>
+            </div>
+        </div>
+        <div class="content" id="pay-details" style="display:none;">
+            <div style="height: 120px;width: 100%; border:2px solid grey;border-radius: 10px;position: relative;">
+                    <select id="bank-selected" value="" class="p2p-select" title="Banks" aria-placeholder="Seleccione un banco">
+                    </select>
+                    <select id="usuario-selected" value="" style="left:55%;" class="p2p-select" title="Persona">
+                        <option disabled selected>
+                            -- Tipo de usuario --
+                        </option>
+                        <option name="usuario" value="0">
+                            PERSONAS
+                        </option>
+                        <option name="usuario" value="1">
+                            EMPRESAS
+                        </option>
+                    </select>
+                    <div class="button" style="position: absolute;left: 54%;bottom:20px;cursor: pointer;" id="submit-bank"> Enviar </div>
+                    <div class="button" style="position: absolute;left: 40%;bottom:20px;cursor: pointer;" id="cancel-bank"> Cancelar </div>
+            </div>
+        </div>
+        <p id ="error" style="display:none;">Por favor diligencie todos los campos</p>
+    </section>
+</body>
+</html>
