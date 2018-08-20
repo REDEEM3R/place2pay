@@ -168,13 +168,16 @@ var createTransaction = function (){
 
 
 var getTransaction = function (tid = ''){
-    var html = "";
+	var html = "";
 	$.ajax({
 		url: "api/ajax/gettransaction.php",
 		type: "POST",
 		data: {"transactionID":tid} ,
 		success: function(res) {
 			res = JSON.parse(res);
+			if(!res.data.transactionID){
+                res.data.transactionID = res.data[0].transactionID;
+            }
             if(res.msg != "NOENTRY"){
                 switch (res.msg) {
                     case "OK":
@@ -185,8 +188,8 @@ var getTransaction = function (tid = ''){
                         break;
 					case "PENDING":
 						transactionPend = res.data.transactionID;
-						console.log(res.data);
-                        html += "<p>Su transacción con id: "+res.data.transactionID+" se encuentra en estado pendiente</p>";
+						html += "<div><p>Su transacción con id: "+res.data.transactionID+" se encuentra en estado pendiente</p></div>";
+						$("#pay-mthds").html(html);
                         setTimeout(function(){
                             getTransaction(res.data.transactionID);
                           }, 5000);
@@ -196,13 +199,20 @@ var getTransaction = function (tid = ''){
 						break;
 					case "WAITING":
 						transactionPend = res.data.transactionID;
-						break;
+						html += "<div><p>Su transacción con id: "+res.data.transactionID+" se encuentra en proceso por el banco.</p></div>";
+						$("#pay-mthds").html(html);
+                        setTimeout(function(){
+                            getTransaction(res.data.transactionID);
+                          }, 70000);
+                        break;
                     default:
                         break;
                 }
             }else if(tid != '' && res.msg == "NOENTRY"){
-				document.cookie = "transactionID="+cookieValue+";expires==; expires=Thu, 01 Jan 1970 00:00:01 GMT;;path=/";
-            }
+				document.cookie = "transactionID="+cookieValue+";expires==; expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/";
+            }else if(tid == '' && res.msg == "NOENTRY"){
+				console.log("NO ENTRIES");
+			}
 		}
 	});
 }

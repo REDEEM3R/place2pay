@@ -31,7 +31,6 @@ var getTransaction = function (tid = ''){
 		data: {"transactionID":tid} ,
 		success: function(res) {
             res = JSON.parse(res);
-            console.log(res);
             if(!res.data.transactionID){
                 res.data.transactionID = res.data[0].transactionID;
             }
@@ -39,6 +38,7 @@ var getTransaction = function (tid = ''){
                 switch (res.msg) {
                     case "OK":
                         html += "<p>Su transacción con id: "+res.data.transactionID+" ha sido aprobada por el banco. Redireccionando al menú de pago.</p>";
+                        document.cookie = "transactionID="+cookieValue+";expires==; expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/";
                         setTimeout(function(){
                             window.location.replace("../../index.html");
                           }, 5000);
@@ -53,7 +53,7 @@ var getTransaction = function (tid = ''){
                         html += "<p>Su transacción con id: "+res.data.transactionID+" se encuentra en estado pendiente</p>";
                         setTimeout(function(){
                             getTransaction(res.data.transactionID);
-                          }, 5000);
+                          }, 720000);
                         break;
                     case "FAILED":
                         html += "<p>Su transacción con id: "+res.data.transactionID+" ha sido rechazada por el banco. Será redireccionado al menú de pago</p>";
@@ -65,7 +65,7 @@ var getTransaction = function (tid = ''){
                         html += "<p>Su transacción con id: "+res.data.transactionID+" está siendo procesada";
                         setTimeout(function(){
                             getTransaction(res.data.transactionID);
-                        }, 5000);
+                        }, 70000);
                         break;
                     default:
                         break;
