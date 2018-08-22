@@ -3,7 +3,6 @@
     $response = array();
 
     require_once '../connect.php';
-
     createPlace2Pay();
 
     $transactionID = $_POST['transactionID'];
